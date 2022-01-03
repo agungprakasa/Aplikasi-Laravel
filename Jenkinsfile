@@ -5,9 +5,9 @@ pipeline {
   }
   stages {
   stage('Code Quality Check via SonarQube') {  
-            environment {    
-              SONAR_SCANNER = tool('Sonar Scanner')
-            } 
+            // environment {    
+            //   SONAR_SCANNER = tool('Sonar Scanner')
+            // } 
             steps {  
                 script {    
                     withSonarQubeEnv("sq1") {
