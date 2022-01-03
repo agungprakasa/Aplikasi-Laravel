@@ -11,7 +11,7 @@ pipeline {
             steps {  
                 script {    
                     withSonarQubeEnv("sq1") {
-                      sh """${SONAR_SCANNER}/bin/sonar-scanner \
+                      sh """sonar-scanner \
                         -Dsonar.sources=. \
                         -Dsonar.projectKey=laravel \
                         -Dsonar.host.url=http://192.168.9.219:9000 \
