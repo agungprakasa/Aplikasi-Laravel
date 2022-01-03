@@ -1,24 +1,19 @@
 pipeline {
-  agent { label 'linux' }
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
   stages {
   stage('Code Quality Check via SonarQube') {  
-            // environment {    
-            //   SONAR_SCANNER = tool('Sonar Scanner')
-            // } 
+            environment {    
+              SONAR_SCANNER = tool('Sonar Scanner')
+            } 
             steps {  
                 script {    
-                    withSonarQubeEnv(installationName: 'sq1') {
-                      sh """./mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar \
+                    withSonarQubeEnv("Sonarqube Server") {
+                      sh """${SONAR_SCANNER}/bin/sonar-scanner \
                         -Dsonar.sources=. \
-                        -Dsonar.projectKey=laravel \
-                        -Dsonar.host.url=http://192.168.9.219:9000 \
-                        -Dsonar.login=7b5f1cf1ec904372d308fae741d5e0fda0b879cd""" 
+                        -Dsonar.projectKey=laraveldev \
+                        -Dsonar.host.url=${env.SONAR_HOST_URL} \
+                        -Dsonar.login=fd4a7caca1f080fda4444cef90c450fdc4c4320b""" 
                     }   
                 } 
             }
         }
-  }
 }
