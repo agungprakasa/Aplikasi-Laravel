@@ -3,6 +3,7 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
+  stages {
   stage('Code Quality Check via SonarQube') {  
             environment {    
               SONAR_SCANNER = tool('Sonar Scanner')
@@ -19,4 +20,5 @@ pipeline {
                 } 
             }
         }
+  }
 }
