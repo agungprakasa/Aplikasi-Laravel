@@ -11,7 +11,7 @@ pipeline {
             steps {  
                 script {    
                     withSonarQubeEnv("sq1") {
-                      sh """sonar-scanner \
+                      sh """./mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar \
                         -Dsonar.sources=. \
                         -Dsonar.projectKey=laravel \
                         -Dsonar.host.url=http://192.168.9.219:9000 \
